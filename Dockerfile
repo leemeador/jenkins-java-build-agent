@@ -16,14 +16,20 @@ RUN apt-get update && \
 # Install JDK 8 and JDK 11
     apt-get install -qy openjdk-11-jdk && \
     apt-get install -qy openjdk-8-jdk && \
-# Install maven
-    apt-get install -qy maven && \
+# Install maven 3.3.9 and 3.6.0
+    mkdir /opt/tools && \
+    wget http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz -P /tmp && \
+    sudo tar xf /tmp/apache-maven-3.3.9-bin.tar.gz -C /opt/tools && \
+    wget http://archive.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz -P /tmp && \
+    sudo tar xf /tmp/apache-maven-3.6.0-bin.tar.gz -C /opt/tools && \
+# Install git
+    sudo apt-get install git && \
 # Cleanup old packages
     apt-get -qy autoremove && \
-# Add user jenkins to the image
+# Add user cicduser to the image
     adduser --quiet --uid 10011 cicduser && \
-# Set password for the jenkins user (you may want to alter this).
-    echo "jenkins:jenkins" | chpasswd
+# Set password for the cicduser user (you may want to alter this).
+    echo "cicduser:jenkins" | chpasswd
 
 #ADD settings.xml /home/jenkins/.m2/
 ## Copy authorized keys
