@@ -18,12 +18,12 @@ RUN apt-get update && \
     apt-get install -qy openjdk-8-jdk && \
 # Install maven 3.3.9 and 3.6.0
     mkdir /opt/tools && \
-    wget http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz -P /tmp && \
-    sudo tar xf /tmp/apache-maven-3.3.9-bin.tar.gz -C /opt/tools && \
-    wget http://archive.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz -P /tmp && \
-    sudo tar xf /tmp/apache-maven-3.6.0-bin.tar.gz -C /opt/tools && \
+    wget --no-verbose http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz -P /tmp && \
+    tar xf /tmp/apache-maven-3.3.9-bin.tar.gz -C /opt/tools && \
+    wget --no-verbose http://archive.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz -P /tmp && \
+    tar xf /tmp/apache-maven-3.6.0-bin.tar.gz -C /opt/tools && \
 # Install git
-    sudo apt-get install git && \
+    apt-get install git && \
 # Cleanup old packages
     apt-get -qy autoremove && \
 # Add user cicduser to the image
