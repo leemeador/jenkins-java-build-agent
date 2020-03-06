@@ -2,6 +2,12 @@ FROM ubuntu:bionic
 
 LABEL maintainer="lee@leemeador.com"
 
+ENV JENKINS_AGENT="ot-agent-java" \
+    JAVA_HOME="/usr/lib/jvm/java-8" \
+    M2_HOME="/opt/tools/apache-maven-3.6.0" \
+    GRADLE_HOME"=/opt/tools/gradle-2.2.1"
+ENV PATH=${M2_HOME}/bin:${GRADLE_HOME}/bin:${PATH}
+
 # Begin:      https://hub.docker.com/r/bibinwilson/jenkins-slave
 # Usage info: https://devopscube.com/docker-containers-as-build-slaves-jenkins/
 
@@ -16,7 +22,9 @@ RUN apt-get update && \
 # Install JDK 8 and JDK 11
     apt-get install -qy openjdk-11-jdk && \
     apt-get install -qy openjdk-8-jdk && \
-    update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java && \
+    update-java-alternatives --set java-1.8.0-openjdk-amd64 && \
+    ln -s /usr/lib/jvm/java-11-openjdk-amd64 /usr/lib/jvm/java-11 && \
+    ln -s /usr/lib/jvm/java-8-openjdk-amd64 /usr/lib/jvm/java-8 && \
 # Install maven 3.3.9 and 3.6.0
     mkdir /opt/tools && \
     wget --no-verbose http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz -P /tmp && \
