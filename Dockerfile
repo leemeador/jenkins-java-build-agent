@@ -23,11 +23,11 @@ RUN apt-get update && \
     tar xf /tmp/apache-maven-3.3.9-bin.tar.gz -C /opt/tools && \
     wget --no-verbose http://archive.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz -P /tmp && \
     tar xf /tmp/apache-maven-3.6.0-bin.tar.gz -C /opt/tools && \
+# Install Unzip
+    apt-get install unzip && \
 # install gradle 2.2.1
     wget --no-verbose https://services.gradle.org/distributions/gradle-2.2.1-bin.zip -P /tmp && \
     unzip -d /opt/tools /tmp/gradle-2.2.1-bin.zip && \
-# Install git 2.17
-    apt-get install git && \
 # Cleanup old packages
     apt-get -qy autoremove && \
 # Add user cicduser to the image
