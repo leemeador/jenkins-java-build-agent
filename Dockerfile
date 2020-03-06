@@ -5,7 +5,7 @@ LABEL maintainer="lee@leemeador.com"
 ENV JENKINS_AGENT="ot-agent-java" \
     JAVA_HOME="/usr/lib/jvm/java-8" \
     M2_HOME="/opt/tools/apache-maven-3.6.0" \
-    GRADLE_HOME"=/opt/tools/gradle-2.2.1"
+    GRADLE_HOME="/opt/tools/gradle-2.2.1"
 ENV PATH=${M2_HOME}/bin:${GRADLE_HOME}/bin:${PATH}
 
 # Begin:      https://hub.docker.com/r/bibinwilson/jenkins-slave
