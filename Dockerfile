@@ -16,13 +16,17 @@ RUN apt-get update && \
 # Install JDK 8 and JDK 11
     apt-get install -qy openjdk-11-jdk && \
     apt-get install -qy openjdk-8-jdk && \
+    update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java && \
 # Install maven 3.3.9 and 3.6.0
     mkdir /opt/tools && \
     wget --no-verbose http://archive.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz -P /tmp && \
     tar xf /tmp/apache-maven-3.3.9-bin.tar.gz -C /opt/tools && \
     wget --no-verbose http://archive.apache.org/dist/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz -P /tmp && \
     tar xf /tmp/apache-maven-3.6.0-bin.tar.gz -C /opt/tools && \
-# Install git
+# install gradle 2.2.1
+    wget --no-verbose https://services.gradle.org/distributions/gradle-2.2.1-bin.zip -P /tmp && \
+    unzip -d /opt/tools /tmp/gradle-2.2.1-bin.zip && \
+# Install git 2.17
     apt-get install git && \
 # Cleanup old packages
     apt-get -qy autoremove && \
