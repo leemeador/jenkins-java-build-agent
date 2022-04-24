@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:jammy
 
 LABEL maintainer="lee@leemeador.com"
 
